@@ -8,9 +8,11 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        sans: ["Quicksand", "sans-serif"],
+      },
+      gridTemplateColumns: {
+        "70/30": "70% 28%",
       },
     },
   },
