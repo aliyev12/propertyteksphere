@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import "@/assets/styles/globals.css";
 import { Metadata } from "next";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Property TEK Sphere",
@@ -16,6 +17,7 @@ const MainLayout = ({ children }: { children: ReactElement }) => {
       <body>
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
