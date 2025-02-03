@@ -4,3 +4,30 @@
 
 /* brown: CB6843 */
 /* blue: 28A3F0 */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .link {
+    @apply text-foreground hover:underline;
+  }
+
+  .button {
+    @apply flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-4 py-2;
+  }
+}
