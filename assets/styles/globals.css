@@ -28,6 +28,13 @@
   }
 
   .button {
-    @apply flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-4 py-2;
+    @apply flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-blue;
+  }
+  .button.button-primary {
+    @apply px-4 py-2;
+  }
+  .button.button-icon {
+    @apply p-2;
   }
 }
+/* className="relative inline-flex items-center justify-center rounded-lg p-2 bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-blue" */
