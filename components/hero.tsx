@@ -15,7 +15,7 @@ import { Label } from "./ui/label";
 const Hero = () => {
   return (
     <section
-      className="relative py-20 mb-4 bg-cover bg-center bg-no-repeat"
+      className="relative py-20 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/images/hero-img.jpg')" }}
     >
       <div className="absolute inset-0 bg-black/50"></div>{" "}
