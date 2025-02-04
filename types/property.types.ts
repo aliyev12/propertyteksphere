@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export interface ILocation {
   street: string;
   city: string;
@@ -18,8 +20,8 @@ export interface ISellerInfo {
 }
 
 export interface IProperty {
-  _id: string;
-  owner: string;
+  _id: Types.ObjectId;
+  owner: Types.ObjectId;
   name: string;
   type: string;
   description: string;
