@@ -19,7 +19,6 @@ const Navbar = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
-  console.log("pathname = ", pathname);
 
   const userImageExists = false;
 
