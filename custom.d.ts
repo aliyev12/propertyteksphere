@@ -10,5 +10,8 @@ declare var process: {
     NEXTAUTH_URL: string;
     NEXTAUTH_URL_INTERNAL: string;
     NEXTAUTH_SECRET: string;
+    CLOUDINARY_CLOUD_NAME: string;
+    CLOUDINARY_API_KEY: string;
+    CLOUDINARY_API_SECRET: string;
   };
 };
