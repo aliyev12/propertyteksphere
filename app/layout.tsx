@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import "@/assets/styles/globals.css";
 import { Metadata } from "next";
+import AuthProvider from "@/components/auth-provider";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -13,13 +14,15 @@ export const metadata: Metadata = {
 
 const MainLayout = ({ children }: { children: ReactElement }) => {
   return (
-    <html>
-      <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <AuthProvider>
+      <html>
+        <body>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </AuthProvider>
   );
 };
 

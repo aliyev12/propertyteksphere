@@ -1,13 +1,14 @@
 "use client";
 import Link from "next/link";
 import { getActiveClass } from ".";
+import { Session } from "next-auth";
 
 const MobileMenu = ({
   pathname,
-  isLoggedIn,
+  session,
 }: {
   pathname: string;
-  isLoggedIn: boolean;
+  session: Session | null;
 }) => {
   return (
     <div id="mobile-menu">
@@ -21,7 +22,7 @@ const MobileMenu = ({
         >
           Properties
         </Link>
-        {isLoggedIn && (
+        {session && (
           <Link
             href="/properties/add"
             className={`link ${getActiveClass(pathname, "/properties/add")}`}
@@ -29,7 +30,7 @@ const MobileMenu = ({
             Add Property
           </Link>
         )}
-        {!isLoggedIn && (
+        {!session && (
           <Link
             href="/login"
             className={`link ${getActiveClass(pathname, "/login")}`}
