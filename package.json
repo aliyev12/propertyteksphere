@@ -10,6 +10,7 @@
     "seed": "npx tsx ./config/seed.ts"
   },
   "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-select": "^2.1.5",
     "@radix-ui/react-slot": "^1.1.1",
@@ -20,6 +21,7 @@
     "mongodb": "^6.13.0",
     "mongoose": "^8.9.6",
     "next": "15.1.6",
+    "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-spinners": "^0.15.0",
@@ -30,6 +32,7 @@
     "@types/dotenv": "^6.1.1",
     "@types/mongodb": "^4.0.6",
     "@types/mongoose": "^5.11.96",
+    "@types/next-auth": "^3.13.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
