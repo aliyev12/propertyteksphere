@@ -1,7 +1,13 @@
 "use client";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
 
-const ProfileMenu = () => {
+const ProfileMenu = ({
+  setIsProfileMenuOpen,
+}: {
+  setIsProfileMenuOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   return (
     <div
       id="user-menu"
@@ -34,6 +40,10 @@ const ProfileMenu = () => {
         role="menuitem"
         tabIndex={-1}
         id="user-menu-item-2"
+        onClick={() => {
+          setIsProfileMenuOpen(false);
+          signOut();
+        }}
       >
         Sign Out
       </button>

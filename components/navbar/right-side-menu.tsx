@@ -52,7 +52,9 @@ const RightSideMenu = ({ profileImage }: { profileImage?: string | null }) => {
           </button>
         </div>
 
-        {isProfileMenuOpen && <ProfileMenu />}
+        {isProfileMenuOpen && (
+          <ProfileMenu setIsProfileMenuOpen={setIsProfileMenuOpen} />
+        )}
       </div>
     </div>
   );
