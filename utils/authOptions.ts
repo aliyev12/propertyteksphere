@@ -1,9 +1,11 @@
 import connectDB from "@/config/database";
 import User from "@/models/User";
-import { Profile, Session } from "next-auth";
+import { ISODateString, Profile, Session } from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 
-type TSessionWithId = Session & { user: { id?: string } };
+export type TSessionWithId = Session & {
+  user: { id?: string };
+};
 
 export const authOptions = {
   providers: [
