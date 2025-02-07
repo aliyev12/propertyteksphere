@@ -5,6 +5,7 @@ import { IProperty } from "@/types/property.types";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import PropertyDetails from "@/components/property-details";
+import PropertyImages from "@/components/property-images";
 
 interface IPropertyPageProps {
   params: Promise<{ id: string }>;
@@ -17,7 +18,10 @@ const PropertyPage = async ({ params }: IPropertyPageProps) => {
 
   return (
     <div className="space-y-10 lg:space-y-16">
-      <PropertyHeaderImage image={property.images[0]} />
+      <PropertyHeaderImage
+        image={property.images[0]}
+        imageAlt={property.name}
+      />
       <section>
         <div className="container m-auto  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/properties" className="flex  items-center">
@@ -33,6 +37,7 @@ const PropertyPage = async ({ params }: IPropertyPageProps) => {
           </div>
         </div>
       </section>
+      <PropertyImages images={property.images} />
     </div>
   );
 };

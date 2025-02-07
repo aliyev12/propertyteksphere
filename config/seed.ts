@@ -21,12 +21,10 @@ const seedDatabase = async () => {
   await connectDB(); // Ensure MongoDB is connected
 
   const filePath = path.join(__dirname, "seed_properties.json");
-  console.log("filePath = ", filePath);
 
   try {
     await User.deleteMany();
     await Property.deleteMany();
-
     const users = await User.insertMany(usersData);
     console.log("Users seeded successfully!");
 
@@ -38,6 +36,7 @@ const seedDatabase = async () => {
     properties.forEach((property: IProperty, index: number) => {
       property._id = new mongoose.Types.ObjectId();
       property.owner = users[index % users.length]._id;
+      property.images = [];
     });
 
     await Property.insertMany(properties);
