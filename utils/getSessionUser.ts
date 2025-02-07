@@ -1,7 +1,14 @@
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "./authOptions";
+import { authOptions, TSessionWithId } from "./authOptions";
 
-export const getSessionUser = async () => {
+export async function getSessionUser(): Promise<{
+  user: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  };
+  userId: string | undefined;
+} | null> {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) return null;
@@ -10,4 +17,4 @@ export const getSessionUser = async () => {
     user: session.user,
     userId: session.user.id,
   };
-};
+}
