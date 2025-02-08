@@ -10,11 +10,11 @@ const ProfileProperties = ({
 }: {
   properties: IProperty[];
 }) => {
-  const [properties, setProperties] = useState(initialProperties);
+  const [properties, setProperties] = useState<IProperty[]>(initialProperties);
 
   return properties.map((property, i) => (
     <div className="mb-10" key={i}>
-      <a href="/property.html">
+      <Link href={`/properties/${property._id}`}>
         <Image
           className="h-32 w-full rounded-md object-cover"
           src={property.images[0]}
@@ -23,7 +23,7 @@ const ProfileProperties = ({
           height={0}
           sizes="100vw"
         />
-      </a>
+      </Link>
       <div className="mt-2">
         <p className="text-lg font-semibold">{property.name}</p>
         <p className="">

@@ -6,6 +6,7 @@ import Property from "@/models/Property";
 import { getSessionUser } from "@/utils/getSessionUser";
 import ProfileProperties from "@/components/profile-properties";
 import { IProperty } from "@/types/property.types";
+import { convertToSerializableObject } from "@/utils/convertToObject";
 
 const ProfilePage = async () => {
   await connectDB();
@@ -16,9 +17,11 @@ const ProfilePage = async () => {
 
   if (!userId) throw new Error("User ID is required");
 
-  const properties = (await Property.find({
+  const propertiesDocs = (await Property.find({
     owner: userId,
   }).lean()) as unknown as IProperty[];
+
+  const properties = propertiesDocs.map(convertToSerializableObject);
 
   return (
     <section className="">
