@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import PropertyDetails from "@/components/property-details";
 import PropertyImages from "@/components/property-images";
+import { convertToSerializableObject } from "@/utils/convertToObject";
 
 interface IPropertyPageProps {
   params: Promise<{ id: string }>;
@@ -14,7 +15,16 @@ interface IPropertyPageProps {
 const PropertyPage = async ({ params }: IPropertyPageProps) => {
   await connectDB();
   const id = (await params).id;
-  const property = (await Property.findById(id).lean()) as unknown as IProperty;
+  const propertyDoc = await Property.findById(id).lean();
+
+  const property = convertToSerializableObject(propertyDoc);
+
+  if (!property)
+    return (
+      <h1 className="text-center text-2xl font-bold mt-10">
+        Property Not Found
+      </h1>
+    );
 
   return (
     <div className="space-y-10 lg:space-y-16">
