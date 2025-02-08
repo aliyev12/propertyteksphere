@@ -4,6 +4,7 @@ import { IProperty } from "@/types/property.types";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import deleteProperty from "@/app/actions/delete-property";
 
 const ProfileProperties = ({
   properties: initialProperties,
@@ -11,6 +12,22 @@ const ProfileProperties = ({
   properties: IProperty[];
 }) => {
   const [properties, setProperties] = useState<IProperty[]>(initialProperties);
+
+  async function handleDeleteProperty(propertyId: string) {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this property?"
+    );
+
+    if (!confirmed) return;
+
+    await deleteProperty(propertyId);
+
+    const updatedProperties = properties.filter(
+      (x) => x._id.toString() !== propertyId
+    );
+
+    setProperties(updatedProperties);
+  }
 
   return properties.map((property, i) => (
     <div className="mb-10" key={i}>
@@ -35,7 +52,12 @@ const ProfileProperties = ({
         <Button asChild variant="default">
           <Link href="/properties/add">Edit</Link>
         </Button>
-        <Button variant="destructive">Delete</Button>
+        <Button
+          variant="destructive"
+          onClick={() => handleDeleteProperty(property._id.toString())}
+        >
+          Delete
+        </Button>
       </div>
     </div>
   ));
