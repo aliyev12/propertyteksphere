@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import deleteProperty from "@/app/actions/delete-property";
+import { toast } from "react-toastify";
 
 const ProfileProperties = ({
   properties: initialProperties,
@@ -27,6 +28,8 @@ const ProfileProperties = ({
     );
 
     setProperties(updatedProperties);
+
+    toast.success("Property deleted successfully");
   }
 
   return properties.map((property, i) => (

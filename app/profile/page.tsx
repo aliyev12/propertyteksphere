@@ -56,8 +56,14 @@ const ProfilePage = async () => {
             </div>
 
             <div className="md:w-3/4 md:pl-4">
-              <h2 className="text-xl font-semibold mb-4">Your Listings</h2>
-              <ProfileProperties properties={properties} />
+              {properties.length ? (
+                <>
+                  <h2 className="text-xl font-semibold mb-4">Your Listings</h2>
+                  <ProfileProperties properties={properties} />
+                </>
+              ) : (
+                <p>You currently don't have any properties</p>
+              )}
             </div>
           </div>
         </div>

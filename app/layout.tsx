@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import AuthProvider from "@/components/auth-provider";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Property TEK Sphere",
@@ -20,6 +22,7 @@ const MainLayout = ({ children }: { children: ReactElement }) => {
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <ToastContainer />
         </body>
       </html>
     </AuthProvider>
