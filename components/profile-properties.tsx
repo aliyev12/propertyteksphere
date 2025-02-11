@@ -53,7 +53,7 @@ const ProfileProperties = ({
       </div>
       <div className="mt-2 space-x-3">
         <Button asChild variant="default">
-          <Link href="/properties/add">Edit</Link>
+          <Link href={`/properties/${property._id}/edit`}>Edit</Link>
         </Button>
         <Button
           variant="destructive"
