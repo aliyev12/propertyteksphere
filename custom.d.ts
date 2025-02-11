@@ -13,5 +13,6 @@ declare var process: {
     CLOUDINARY_CLOUD_NAME: string;
     CLOUDINARY_API_KEY: string;
     CLOUDINARY_API_SECRET: string;
+    NEXT_PUBLIC_GOOGLE_GEOCODING_API_KEY: string;
   };
 };
