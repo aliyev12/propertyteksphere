@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import cloudinary from "@/config/cloudinary";
 import { IProperty } from "@/types/property.types";
 
-interface IPropertyData {
+export interface IPropertyData {
   owner: string;
   type: FormDataEntryValue | null;
   name: FormDataEntryValue | null;

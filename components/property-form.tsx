@@ -21,9 +21,15 @@ interface IPropertyFormProps {
   action: (formData: FormData) => Promise<void>;
   header: string;
   property?: IProperty;
+  submitBtnTxt?: string;
 }
 
-const PropertyForm = ({ action, header, property }: IPropertyFormProps) => {
+const PropertyForm = ({
+  action,
+  header,
+  property,
+  submitBtnTxt = "Add property",
+}: IPropertyFormProps) => {
   console.log("property = ", property);
 
   return (
@@ -430,7 +436,7 @@ const PropertyForm = ({ action, header, property }: IPropertyFormProps) => {
 
       <div className="mt-12">
         <Button type="submit" size="lg">
-          Add Property
+          {submitBtnTxt}
         </Button>
       </div>
     </form>
