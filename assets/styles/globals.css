@@ -90,3 +90,35 @@
     @apply bg-background text-foreground;
   }
 }
+
+#map .leaflet-container {
+  border-radius: 0.5rem;
+}
+#map .leaflet-touch .leaflet-bar a:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 2px solid #000;
+}
+#map .leaflet-touch .leaflet-bar a:first-child span {
+  transform: translate(8px, -3px);
+  display: flex;
+}
+#map .leaflet-touch .leaflet-bar a:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+#map .leaflet-touch .leaflet-bar a:last-child span {
+  display: flex;
+  transform: translate(8px, -2px);
+}
+#map .leaflet-bottom.leaflet-right {
+  display: none;
+}
+#map .leaflet-touch .leaflet-control-layers,
+#map .leaflet-touch .leaflet-bar {
+  border: 2px solid #000;
+  background-clip: padding-box;
+}
+#map .leaflet-bar a {
+  background-color: #00000012;
+}

@@ -7,6 +7,11 @@ import {
   OutputFormat,
   setDefaults,
 } from "react-geocode";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import Spinner from "./spinner";
+import L, { LatLngExpression } from "leaflet";
+import MapPin from "./map-pin";
 
 const PropertyMap = ({ property }: { property: IProperty }) => {
   const [lat, setLat] = useState(null);
@@ -60,12 +65,38 @@ const PropertyMap = ({ property }: { property: IProperty }) => {
     fetchCoords();
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Spinner />;
 
   if (geocodeError)
     return <div className="text-xl">No location data found</div>;
 
-  return <div>map</div>;
+  // const position: LatLngExpression = [51.505, -0.09];
+  const position: LatLngExpression = [viewport.latitude, viewport.longitude];
+
+  const customIcon = new L.DivIcon({
+    html: MapPin(),
+    className: "custom-marker-icon", // Optional: Add a CSS class for styling
+    iconSize: [30, 30], // Size of the icon (adjust as needed)
+    iconAnchor: [15, 30], // Anchor point of the icon (usually center-bottom)
+  });
+
+  return (
+    <div id="map">
+      <MapContainer
+        center={position}
+        zoom={13}
+        scrollWheelZoom={true}
+        style={{ height: "500px", width: "100%" }}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <Marker position={position} icon={customIcon}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+      </MapContainer>
+    </div>
+  );
 };
 
 export default PropertyMap;
