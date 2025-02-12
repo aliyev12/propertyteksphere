@@ -16,11 +16,9 @@ const PropertyDetails = ({ property }: { property: IProperty }) => {
           </p>
         </div>
 
-        <h3 className="text-lg font-bold my-6 bg-foreground text-background p-2">
-          Rates & Options
-        </h3>
+        <h3 className="text-xl font-bold mt-12 mb-6">Rates & Options</h3>
         <div className="flex flex-col md:flex-row justify-around">
-          <div className="flex items-center justify-center items-center border-b border-gray-200 md:border-b-0 pb-6 md:pb-0">
+          <div className="flex items-center justify-center border-b border-gray-200 md:border-b-0 py-6 md:pb-0">
             <div className="mr-2 font-bold">Nightly</div>
             <div className="text-2xl font-bold">
               {property.rates.nightly ? (
