@@ -34,8 +34,10 @@ const seedDatabase = async () => {
     const properties = JSON.parse(rawData);
 
     properties.forEach((property: IProperty, index: number) => {
-      property._id = new mongoose.Types.ObjectId();
-      property.owner = users[index % users.length]._id;
+      property._id = new mongoose.Types.ObjectId().toString();
+      property.owner = new mongoose.Types.ObjectId(
+        users[index % users.length]._id
+      );
       property.images = [];
     });
 
