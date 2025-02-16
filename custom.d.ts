@@ -1,3 +1,5 @@
+import NextAuth from "next-auth";
+
 declare var process: {
   env: {
     MONGO_USER: string;
@@ -16,3 +18,14 @@ declare var process: {
     NEXT_PUBLIC_GOOGLE_GEOCODING_API_KEY: string;
   };
 };
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      email: string;
+      name?: string;
+      image?: string;
+    };
+  }
+}

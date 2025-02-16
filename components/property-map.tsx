@@ -1,4 +1,5 @@
 "use client";
+import dynamic from "next/dynamic";
 import { IProperty } from "@/types/property.types";
 import { useEffect, useState } from "react";
 import {
@@ -7,11 +8,27 @@ import {
   OutputFormat,
   setDefaults,
 } from "react-geocode";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Spinner from "./spinner";
-import L, { LatLngExpression } from "leaflet";
 import MapPin from "./map-pin";
+import type { DivIcon, LatLngExpression } from "leaflet";
+
+// Dynamically import MapContainer and other Leaflet components
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
+});
 
 const PropertyMap = ({ property }: { property: IProperty }) => {
   const [lat, setLat] = useState(null);
@@ -25,6 +42,13 @@ const PropertyMap = ({ property }: { property: IProperty }) => {
   });
   const [loading, setLoading] = useState(true);
   const [geocodeError, setGeocodeError] = useState(false);
+  const [L, setL] = useState<typeof import("leaflet") | null>(null);
+
+  useEffect(() => {
+    import("leaflet").then((leaflet) => {
+      setL(leaflet);
+    });
+  }, []);
 
   setDefaults({
     key: process.env.NEXT_PUBLIC_GOOGLE_GEOCODING_API_KEY,
@@ -66,6 +90,7 @@ const PropertyMap = ({ property }: { property: IProperty }) => {
   }, []);
 
   if (loading) return <Spinner />;
+  if (!L) return <Spinner />; // Ensure Leaflet is loaded before using it
 
   if (geocodeError)
     return <div className="text-xl">No location data found</div>;
@@ -73,7 +98,7 @@ const PropertyMap = ({ property }: { property: IProperty }) => {
   // const position: LatLngExpression = [51.505, -0.09];
   const position: LatLngExpression = [viewport.latitude, viewport.longitude];
 
-  const customIcon = new L.DivIcon({
+  const customIcon: DivIcon = new L.DivIcon({
     html: MapPin(),
     className: "custom-marker-icon", // Optional: Add a CSS class for styling
     iconSize: [30, 30], // Size of the icon (adjust as needed)
