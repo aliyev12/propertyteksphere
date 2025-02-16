@@ -10,39 +10,36 @@ import { IProperty } from "@/types/property.types";
 // Load environment variables
 dotenv.config();
 
-const usersData = [
-  { email: "alice@example.com", username: "Alice", image: "" },
-  { email: "bob@example.com", username: "Bob", image: "" },
-  { email: "charlie@example.com", username: "Charlie", image: "" },
-  { email: "dave@example.com", username: "Dave", image: "" },
-];
-
 const seedDatabase = async () => {
   await connectDB(); // Ensure MongoDB is connected
 
-  const filePath = path.join(__dirname, "seed_properties.json");
+  const adminEmail = "dev7c4@gmail.com";
 
   try {
-    await User.deleteMany();
-    await Property.deleteMany();
-    const users = await User.insertMany(usersData);
-    console.log("Users seeded successfully!");
+    const foundUser = await User.findOne({ email: adminEmail });
 
-    const filePath = path.join(__dirname, "seed_properties.json");
-    const rawData = fs.readFileSync(filePath, "utf-8");
+    if (foundUser) {
+      const adminUserId = foundUser._id;
 
-    const properties = JSON.parse(rawData);
+      await Property.deleteMany();
 
-    properties.forEach((property: IProperty, index: number) => {
-      property._id = new mongoose.Types.ObjectId().toString();
-      property.owner = new mongoose.Types.ObjectId(
-        users[index % users.length]._id
+      const filePath = path.join(__dirname, "seed_properties.json");
+      const rawData = fs.readFileSync(filePath, "utf-8");
+
+      const properties = JSON.parse(rawData);
+
+      properties.forEach((property: IProperty, index: number) => {
+        property._id = new mongoose.Types.ObjectId().toString();
+        property.owner = new mongoose.Types.ObjectId(adminUserId);
+      });
+
+      await Property.insertMany(properties);
+      console.log("Properties seeded successfully!");
+    } else {
+      console.log(
+        `Failed to see the properties. User with email ${adminEmail} was not found.`
       );
-      property.images = [];
-    });
-
-    await Property.insertMany(properties);
-    console.log("Properties seeded successfully!");
+    }
 
     mongoose.connection.close();
   } catch (error) {

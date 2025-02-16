@@ -380,5 +380,85 @@
     "is_featured": false,
     "createdAt": "2024-01-10T00:00:00.000Z",
     "updatedAt": "2024-01-10T00:00:00.000Z"
+  },
+  {
+    "_id": "11",
+    "owner": "67b17a1517bfee4e132e98b0",
+    "name": "Stunning Home Surrounded By Mountains",
+    "type": "House",
+    "description": "Situated just minutes from the charming town of Darlington and the renowned Inn at South Creek, this property offers convenience and luxury. Enjoy the surrounding breathtaking views of the mountains and Little Run Park right from your own backyard.",
+    "location": {
+      "street": "1261 Tanner Rd",
+      "city": "Darlington",
+      "state": "NC",
+      "zipcode": "27850"
+    },
+    "beds": 5,
+    "baths": 3,
+    "square_feet": 2600,
+    "amenities": [
+      "Free Parking",
+      "Dishwasher",
+      "Air Conditioning",
+      "Balcony/Patio",
+      "Full kitchen",
+      "Washer & Dryer"
+    ],
+    "rates": {
+      "monthly": 3400
+    },
+    "seller_info": {
+      "name": "John Stewart",
+      "email": "john.stewart@ncbestrealtors.com",
+      "phone": "215-555-5555"
+    },
+    "images": [
+      "https://res.cloudinary.com/dceqefagi/image/upload/v1739719843/propertyTEKsphere/z-1_cqp7id.webp",
+      "https://res.cloudinary.com/dceqefagi/image/upload/v1739719843/propertyTEKsphere/z-2_nv1gyr.webp",
+      "https://res.cloudinary.com/dceqefagi/image/upload/v1739719844/propertyTEKsphere/z-3_o3ux5b.webp"
+    ],
+    "is_featured": false,
+    "createdAt": "2024-01-10T00:00:00.000Z",
+    "updatedAt": "2024-01-10T00:00:00.000Z"
+  },
+  {
+    "_id": "12",
+    "owner": "67b17a1517bfee4e132e98b0",
+    "name": "House Offering Rustic charm and Modern Comfort",
+    "type": "House",
+    "description": "Beautifully designed home with gleaming hardwood floors throughout. Enjoy the outdoors on the expansive front porch, ideal for sipping your morning coffee while soaking in the beautiful surroundings.",
+    "location": {
+      "street": "8000 Midland Rd",
+      "city": "Midland",
+      "state": "TN",
+      "zipcode": "37020"
+    },
+    "beds": 3,
+    "baths": 2,
+    "square_feet": 1800,
+    "amenities": [
+      "Free Parking",
+      "Dishwasher",
+      "Air Conditioning",
+      "Balcony/Patio",
+      "Full kitchen",
+      "Washer & Dryer"
+    ],
+    "rates": {
+      "monthly": 1900
+    },
+    "seller_info": {
+      "name": "Ashley James",
+      "email": "ashley.james@realtosoftn.com",
+      "phone": "615-110-2731"
+    },
+    "images": [
+      "https://res.cloudinary.com/dceqefagi/image/upload/v1739720556/propertyTEKsphere/x-2_xrgxcv.webp",
+      "https://res.cloudinary.com/dceqefagi/image/upload/v1739720440/propertyTEKsphere/x-1_hnn14v.webp",
+      "https://res.cloudinary.com/dceqefagi/image/upload/v1739720581/propertyTEKsphere/x-3_zsiemn.webp"
+    ],
+    "is_featured": false,
+    "createdAt": "2024-01-10T00:00:00.000Z",
+    "updatedAt": "2024-01-10T00:00:00.000Z"
   }
 ]
