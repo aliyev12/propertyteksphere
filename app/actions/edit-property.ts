@@ -60,7 +60,9 @@ async function editProperty(propertyId: string, formData: FormData) {
 
   revalidatePath("/", "layout");
 
-  redirect(`/properties/${updatedProperty._id}`);
+  if (updatedProperty) {
+    redirect(`/properties/${updatedProperty._id}`);
+  }
 }
 
 export default editProperty;

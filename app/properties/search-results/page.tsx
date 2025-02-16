@@ -31,17 +31,17 @@ const SearchResultsPage = async ({ searchParams }: ISearchResultsPageProps) => {
 
   let query: IPropertyQuery = {
     $or: [
-      { name: { $regex: location, $options: "i" } }, // Explicit RegExp
-      { description: { $regex: location, $options: "i" } }, // Explicit RegExp
-      { "location.street": { $regex: location, $options: "i" } }, // Explicit RegExp
-      { "location.city": { $regex: location, $options: "i" } }, // Explicit RegExp
-      { "location.state": { $regex: location, $options: "i" } }, // Explicit RegExp
-      { "location.zipcode": { $regex: location, $options: "i" } }, // Explicit RegExp
+      { name: new RegExp(location, "i") }, // Using RegExp directly
+      { description: new RegExp(location, "i") }, // Using RegExp directly
+      { "location.street": new RegExp(location, "i") }, // Using RegExp directly
+      { "location.city": new RegExp(location, "i") }, // Using RegExp directly
+      { "location.state": new RegExp(location, "i") }, // Using RegExp directly
+      { "location.zipcode": new RegExp(location, "i") }, // Using RegExp directly
     ],
   };
 
   if (propertyType && propertyType !== "All") {
-    query.type = { $regex: propertyType, $options: "i" }; // Explicit RegExp
+    query.type = new RegExp(propertyType, "i"); // Using RegExp directly
   }
 
   const propertiesQueryResults = await Property.find(query).lean();

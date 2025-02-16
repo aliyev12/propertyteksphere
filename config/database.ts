@@ -13,8 +13,12 @@ const connectDB = async () => {
 
   // Connect to MongoDB
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    connected = true;
+    if (process.env.MONGODB_URI) {
+      await mongoose.connect(process.env.MONGODB_URI);
+      connected = true;
+    } else {
+      throw new Error("MONGODB_URI is not set in the environment variables.");
+    }
   } catch (error) {
     console.log(error);
   }
