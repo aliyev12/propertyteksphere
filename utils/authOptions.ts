@@ -1,7 +1,8 @@
 import connectDB from "@/config/database";
 import User from "@/models/User";
-import { ISODateString, Profile, Session } from "next-auth";
+import { AuthOptions, ISODateString, Profile, Session } from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
+import type { NextAuthConfig } from "next-auth";
 
 export type TSessionWithId = Session & {
   user: { id?: string };
@@ -10,8 +11,8 @@ export type TSessionWithId = Session & {
 export const authOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       authorization: {
         params: {
           prompt: "consent",
@@ -66,4 +67,4 @@ export const authOptions = {
       return sessionWithId;
     },
   },
-};
+} satisfies NextAuthConfig;

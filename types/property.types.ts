@@ -20,7 +20,7 @@ export interface ISellerInfo {
 }
 
 export interface IProperty {
-  _id: Types.ObjectId;
+  _id: string;
   owner: Types.ObjectId;
   name: string;
   type: string;
@@ -34,6 +34,6 @@ export interface IProperty {
   seller_info: ISellerInfo;
   images: string[];
   is_featured: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

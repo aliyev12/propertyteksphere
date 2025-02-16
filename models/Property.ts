@@ -1,5 +1,5 @@
 import { IProperty } from "@/types/property.types";
-import { Schema, model, models } from "mongoose";
+import { Model, Schema, model, models } from "mongoose";
 
 const PropertySchema = new Schema<IProperty>(
   {
@@ -67,7 +67,14 @@ const PropertySchema = new Schema<IProperty>(
   }
 );
 
-const Property =
+PropertySchema.set("toJSON", {
+  transform: (_, ret) => {
+    ret._id = ret._id.toString(); // Convert ObjectId to string
+    return ret;
+  },
+});
+
+const Property: Model<IProperty> =
   models.Property || model<IProperty>("Property", PropertySchema);
 
 export default Property;
