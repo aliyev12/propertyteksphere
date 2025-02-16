@@ -20,7 +20,7 @@ async function editProperty(propertyId: string, formData: FormData) {
   const existingProperty = await Property.findById(propertyId);
 
   // Verify ownership
-  if (existingProperty.owner.toString() !== userId) {
+  if (existingProperty && existingProperty?.owner.toString() !== userId) {
     throw new Error("Current user does not own this property");
   }
 
