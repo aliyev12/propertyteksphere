@@ -7,16 +7,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { IProperty } from "@/types/property.types";
+import ImagesInputs from "./images-inputs";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-import { IProperty } from "@/types/property.types";
-import Image from "next/image";
-import ImageInput from "./image-input";
-import ImagesInputs from "./images-inputs";
 
 interface IPropertyFormProps {
   action: (formData: FormData) => Promise<void>;
