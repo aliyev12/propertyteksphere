@@ -7,6 +7,24 @@ import { redirect } from "next/navigation";
 import cloudinary from "@/config/cloudinary";
 import { IProperty } from "@/types/property.types";
 
+export async function processImage(imageFile: File) {
+  const imageBuffer = await imageFile.arrayBuffer();
+  const imageArray = Array.from(new Uint8Array(imageBuffer));
+  const imageData = Buffer.from(imageArray);
+
+  // Convert to base64
+  const imageBase64 = imageData.toString("base64");
+
+  // Make request to cloudinary
+  const result = await cloudinary.uploader.upload(
+    `data:image/png;base64,${imageBase64}`,
+    {
+      folder: "propertyTEKsphere",
+    }
+  );
+  return result.secure_url;
+}
+
 export interface IPropertyData {
   owner: string;
   type: FormDataEntryValue | null;
@@ -48,11 +66,15 @@ async function addProperty(formData: FormData) {
 
   // Access all values from amenities and images
   const amenities = formData.getAll("amenities");
-  const images = formData
-    .getAll("images")
-    .filter(
-      (image): image is File => image instanceof File && image.name !== ""
-    );
+
+  const image1 = formData.get("image1");
+  const image2 = formData.get("image2");
+  const image3 = formData.get("image3");
+  const image4 = formData.get("image4");
+
+  const images = [image1, image2, image3, image4].filter(
+    (image): image is File => image instanceof File && image.name !== ""
+  );
 
   const propertyData: IPropertyData = {
     owner: userId,
@@ -84,22 +106,8 @@ async function addProperty(formData: FormData) {
   const imageUrls = [];
 
   for (const imageFile of images) {
-    const imageBuffer = await imageFile.arrayBuffer();
-    const imageArray = Array.from(new Uint8Array(imageBuffer));
-    const imageData = Buffer.from(imageArray);
-
-    // Convert to base64
-    const imageBase64 = imageData.toString("base64");
-
-    // Make request to cloudinary
-    const result = await cloudinary.uploader.upload(
-      `data:image/png;base64,${imageBase64}`,
-      {
-        folder: "propertyTEKsphere",
-      }
-    );
-
-    imageUrls.push(result.secure_url);
+    const uploadedImgUrl = await processImage(imageFile);
+    imageUrls.push(uploadedImgUrl);
   }
 
   propertyData.images = imageUrls;
