@@ -16,6 +16,7 @@ import { Textarea } from "./ui/textarea";
 import { IProperty } from "@/types/property.types";
 import Image from "next/image";
 import ImageInput from "./image-input";
+import ImagesInputs from "./images-inputs";
 
 interface IPropertyFormProps {
   action: (formData: FormData) => Promise<void>;
@@ -30,8 +31,6 @@ const PropertyForm = ({
   property,
   submitBtnTxt = "Add property",
 }: IPropertyFormProps) => {
-  console.log("property = ", property);
-
   return (
     <form action={action}>
       <h2 className="text-3xl text-center font-semibold mb-6">{header}</h2>
@@ -432,7 +431,7 @@ const PropertyForm = ({
         />
       </div> */}
 
-      {/* {property && <ImageInput property={property} />} */}
+      <ImagesInputs property={property} />
 
       <div className="mt-12">
         <Button type="submit" size="lg">
