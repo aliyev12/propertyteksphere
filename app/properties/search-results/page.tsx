@@ -1,7 +1,9 @@
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { IProperty } from "@/types/property.types";
 import { convertToSerializableObject } from "@/utils/convertToObject";
+import { AlertCircle, Construction } from "lucide-react";
 import { Query, Types } from "mongoose";
 
 interface ISearchResultsPageProps {
@@ -52,7 +54,19 @@ const SearchResultsPage = async ({ searchParams }: ISearchResultsPageProps) => {
   console.log("query = ", JSON.stringify(query, null, 2)); // Better logging
 
   console.log("properties = ", properties);
-  return <div>SearchResultsPage</div>;
+  return (
+    <section className="w-full px-6 flex justify-center">
+      <div className=" max-w-3xl">
+        <Alert variant="default">
+          <Construction className="h-4 w-4" />
+          <AlertTitle>Under Construction</AlertTitle>
+          <AlertDescription>
+            Sorry, this page is still being built. Please, check back soon.
+          </AlertDescription>
+        </Alert>
+      </div>
+    </section>
+  );
 };
 
 export default SearchResultsPage;

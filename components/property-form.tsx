@@ -127,8 +127,8 @@ const PropertyForm = ({
         </div>
       </Card>
 
-      <div className="mb-4 flex flex-wrap">
-        <div className="w-full sm:w-1/3 pr-2">
+      <div className="mb-4 flex flex-wrap space-y-4 md:space-y-0">
+        <div className="w-full sm:w-1/3 md:pr-2">
           <Label htmlFor="beds" className="block  font-bold mb-2">
             Beds
           </Label>
@@ -140,7 +140,7 @@ const PropertyForm = ({
             defaultValue={property?.beds}
           />
         </div>
-        <div className="w-full sm:w-1/3 px-2">
+        <div className="w-full sm:w-1/3 md:px-2">
           <Label htmlFor="baths" className="block  font-bold mb-2">
             Baths
           </Label>
@@ -152,7 +152,7 @@ const PropertyForm = ({
             defaultValue={property?.baths}
           />
         </div>
-        <div className="w-full sm:w-1/3 pl-2">
+        <div className="w-full sm:w-1/3 md:pl-2">
           <Label htmlFor="square_feet" className="block  font-bold mb-2">
             Square Feet
           </Label>

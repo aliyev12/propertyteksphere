@@ -5,7 +5,7 @@ const PropertyImages = ({ images }: { images: string[] }) => {
 
   return (
     <section className="">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {images.length === 1 ? (
           <Image
             src={images[0]}
@@ -16,7 +16,7 @@ const PropertyImages = ({ images }: { images: string[] }) => {
             priority={true}
           />
         ) : (
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {images.map((image, i) => (
               <div
                 key={i}

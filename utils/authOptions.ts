@@ -33,7 +33,6 @@ export const authOptions: AuthOptions = {
     // Invoked on successful sign in
     async signIn({ profile }: { profile?: GoogleProfile | Profile }) {
       if (!profile) return false;
-
       // 1. Connect to the database
       await connectDB();
 
