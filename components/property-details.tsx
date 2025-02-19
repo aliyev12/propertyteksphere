@@ -5,7 +5,7 @@ import PropertyMap from "./property-map";
 const PropertyDetails = ({ property }: { property: IProperty }) => {
   return (
     <main>
-      <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
+      <div className="border p-6 rounded-lg shadow-md text-center md:text-left">
         <div className="mb-4">{property.type}</div>
         <h1 className="text-3xl font-bold mb-4">{property.name}</h1>
         <div className="mb-4 flex align-middle justify-center md:justify-start items-center">
@@ -51,7 +51,7 @@ const PropertyDetails = ({ property }: { property: IProperty }) => {
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+      <div className="border p-6 rounded-lg shadow-md mt-6">
         <h3 className="text-lg font-bold mb-6">Description & Details</h3>
         <div className="flex justify-center gap-4 mb-4 text-xl space-x-9">
           <div className="flex">
@@ -71,7 +71,7 @@ const PropertyDetails = ({ property }: { property: IProperty }) => {
         <p className="mb-4">{property.description}</p>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+      <div className="border p-6 rounded-lg shadow-md mt-6">
         <h3 className="text-lg font-bold mb-6">Amenities</h3>
 
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 list-none">

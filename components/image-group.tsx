@@ -73,6 +73,7 @@ const ImageGroup = ({
           onChange={handleFileChange}
         />
         <input
+          type="hidden"
           className="sr-only"
           name={`existing_img${num}`}
           value={defaultValue.file}
