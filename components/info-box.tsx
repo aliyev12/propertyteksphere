@@ -18,7 +18,7 @@ const InfoBox = ({
   children,
 }: IInfoBoxProps) => {
   return (
-    <div className="p-6 rounded-lg shadow-md flex flex-col">
+    <div className="p-6 rounded-lg shadow-md border flex flex-col">
       <h2 className="text-2xl font-bold">{heading}</h2>
       <p className="mt-2 mb-4">{children}</p>
       <Button asChild variant={variant} className="mt-auto w-fit">

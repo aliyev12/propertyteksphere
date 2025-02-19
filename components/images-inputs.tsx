@@ -156,7 +156,7 @@ const ImagesInputs = ({ property }: { property?: IProperty }) => {
             return (
               <div
                 key={i}
-                className="flex flex-col items-center justify-center w-full shadow-lg border bg-gray-100 rounded-lg p-3"
+                className="flex flex-col items-center justify-center w-full shadow-lg border rounded-lg p-3"
               >
                 <ImageGroup
                   num={i + 1}

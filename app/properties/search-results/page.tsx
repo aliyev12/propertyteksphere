@@ -3,8 +3,12 @@ import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { IProperty } from "@/types/property.types";
 import { convertToSerializableObject } from "@/utils/convertToObject";
-import { AlertCircle, Construction } from "lucide-react";
+import { AlertCircle, ArrowLeft, Construction } from "lucide-react";
 import { Query, Types } from "mongoose";
+import Link from "next/link";
+import PropertyCard from "@/components/property-card";
+import PropertySearchForm from "@/components/property-search-form";
+import { CircleArrowLeft } from "lucide-react";
 
 interface ISearchResultsPageProps {
   searchParams: Promise<{
@@ -33,39 +37,50 @@ const SearchResultsPage = async ({ searchParams }: ISearchResultsPageProps) => {
 
   let query: IPropertyQuery = {
     $or: [
-      { name: new RegExp(location, "i") }, // Using RegExp directly
-      { description: new RegExp(location, "i") }, // Using RegExp directly
-      { "location.street": new RegExp(location, "i") }, // Using RegExp directly
-      { "location.city": new RegExp(location, "i") }, // Using RegExp directly
-      { "location.state": new RegExp(location, "i") }, // Using RegExp directly
-      { "location.zipcode": new RegExp(location, "i") }, // Using RegExp directly
+      { name: new RegExp(location, "i") },
+      { description: new RegExp(location, "i") },
+      { "location.street": new RegExp(location, "i") },
+      { "location.city": new RegExp(location, "i") },
+      { "location.state": new RegExp(location, "i") },
+      { "location.zipcode": new RegExp(location, "i") },
     ],
   };
 
   if (propertyType && propertyType !== "All") {
-    query.type = new RegExp(propertyType, "i"); // Using RegExp directly
+    query.type = new RegExp(propertyType, "i");
   }
 
   const propertiesQueryResults = await Property.find(query).lean();
-  const properties = convertToSerializableObject(propertiesQueryResults);
+  const properties = convertToSerializableObject(
+    propertiesQueryResults
+  ) as IProperty[];
 
-  console.log("locationPattern = ", locationPattern);
-  console.log("location = ", location);
-  console.log("query = ", JSON.stringify(query, null, 2)); // Better logging
-
-  console.log("properties = ", properties);
   return (
-    <section className="w-full px-6 flex justify-center">
-      <div className=" max-w-3xl">
-        <Alert variant="default">
-          <Construction className="h-4 w-4" />
-          <AlertTitle>Under Construction</AlertTitle>
-          <AlertDescription>
-            Sorry, this page is still being built. Please, check back soon.
-          </AlertDescription>
-        </Alert>
-      </div>
-    </section>
+    <>
+      <section className="py-4">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col items-start sm:px-6 lg:px-8">
+          <PropertySearchForm />
+        </div>
+      </section>
+      <section className="px-4 py-6">
+        <div className="container-xl lg:container m-auto px-4 py-6">
+          <Link href="/properties" className="link flex items-center mb-3">
+            <ArrowLeft size={18} className="mr-2" />
+            Back to properties
+          </Link>
+          <h1 className="text-2xl mb-4">Search Results</h1>
+          {properties.length === 0 ? (
+            <p>No search results</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {properties.map((property, i) => (
+                <PropertyCard key={i} property={property} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </>
   );
 };
 

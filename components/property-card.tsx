@@ -26,7 +26,7 @@ const PropertyCard = ({ property }: { property: IProperty }) => {
   };
 
   return (
-    <div className="rounded-xl shadow-md relative">
+    <div className="rounded-xl shadow-md border relative">
       {property.images[0] && (
         <Image
           src={property.images[0]}
