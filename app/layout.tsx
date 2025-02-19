@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const MainLayout = ({ children }: { children: ReactElement }) => {
   return (
     <AuthProvider>
-      <html>
+      <html suppressHydrationWarning>
         <body>
           <ThemeProvider>
             <Navbar />
