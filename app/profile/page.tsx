@@ -7,13 +7,17 @@ import { getSessionUser } from "@/utils/getSessionUser";
 import ProfileProperties from "@/components/profile-properties";
 import { IProperty } from "@/types/property.types";
 import { convertToSerializableObject } from "@/utils/convertToObject";
+import { redirect } from "next/navigation";
 
 const ProfilePage = async () => {
-  await connectDB();
-
   const sessionUser = await getSessionUser();
-
   const userId = sessionUser?.userId;
+
+  if (!userId) {
+    redirect(`/login?back_to=${encodeURIComponent("/profile")}`);
+  }
+
+  await connectDB();
 
   if (!userId) throw new Error("User ID is required");
 

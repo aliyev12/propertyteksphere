@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
 import RightSideMenu from "./right-side-menu";
+import useProviders from "@/hooks/providers.hook";
 
 type TAuthProvider = Record<
   LiteralUnion<BuiltInProviderType, string>,
@@ -29,19 +30,11 @@ export function getActiveClass(pathname: string, href: string) {
 
 const Navbar = () => {
   const { data: session } = useSession();
+  const { providers } = useProviders();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [providers, setProviders] = useState<TAuthProvider>(null);
   const profileImage = session?.user?.image;
   const pathname = usePathname();
-
-  useEffect(() => {
-    const setAuthProviders = async () => {
-      const res = await getProviders();
-      setProviders(res);
-    };
-    setAuthProviders();
-  }, []);
 
   return (
     <nav className="">

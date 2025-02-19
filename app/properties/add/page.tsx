@@ -1,6 +1,15 @@
 import PropertyAddForm from "@/components/property-add-form";
+import { getSessionUser } from "@/utils/getSessionUser";
+import { redirect } from "next/navigation";
 
-const AddPropertyPage = () => {
+const AddPropertyPage = async () => {
+  const sessionUser = await getSessionUser();
+  const userId = sessionUser?.userId;
+
+  if (!userId) {
+    redirect(`/login?back_to=${encodeURIComponent("/properties/add")}`);
+  }
+
   return (
     <section className="">
       <div className="container m-auto max-w-2xl py-24">

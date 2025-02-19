@@ -1,7 +1,11 @@
 "use client";
+import useProviders from "@/hooks/providers.hook";
+import { LogIn } from "lucide-react";
+import { Session } from "next-auth";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { getActiveClass } from ".";
-import { Session } from "next-auth";
+import { Button } from "../ui/button";
 
 const MobileMenu = ({
   pathname,
@@ -10,6 +14,8 @@ const MobileMenu = ({
   pathname: string;
   session: Session | null;
 }) => {
+  const { providers } = useProviders();
+
   return (
     <div id="mobile-menu">
       <div className="space-y-5 px-4 pb-3 pt-2 flex flex-col items-center">
@@ -30,14 +36,14 @@ const MobileMenu = ({
             Add Property
           </Link>
         )}
-        {!session && (
-          <Link
-            href="/login"
-            className={`link ${getActiveClass(pathname, "/login")}`}
-          >
-            Login
-          </Link>
-        )}
+        {!session &&
+          providers &&
+          Object.values(providers).map((provider, i) => (
+            <Button key={i} onClick={() => signIn(provider.id)}>
+              <LogIn className="mr-2 -ml-[1px]" />
+              <span>Login</span>
+            </Button>
+          ))}
         <hr className="w-9/12 border-b border-b-background" />
       </div>
     </div>

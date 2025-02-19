@@ -34,7 +34,7 @@ const PropertyCard = ({ property }: { property: IProperty }) => {
           width={0}
           height={0}
           sizes="100vw"
-          className="w-full h-auto rounded-t-xl"
+          className="w-full h-[250px] rounded-t-xl"
         />
       )}
       <div className="p-4">
