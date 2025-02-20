@@ -10,8 +10,8 @@ const Footer = () => {
   return (
     <footer className="pb-8 mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
       <div className="max-w-7xl w-full">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-          <div className="mb-4 md:mb-0">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-center">
+          <div className="mb-4 md:mb-0 md:mr-5">
             <Image src={logo} alt="Logo" className="h-8 w-auto" />
           </div>
           <div className="flex flex-wrap justify-center md:justify-start mb-4 md:mb-0">
@@ -28,15 +28,16 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div>
-            <span className="mr-3">&copy; {currentYear} Abdul Aliyev</span>
-            <Button asChild size="sm">
-              <a href="https://www.aaliyev.com/contact" target="_blank">
-                <Mail size="10" />
-                Get in touch
-              </a>
-            </Button>
-          </div>
+        </div>
+
+        <div className="container mt-8 mx-auto w-full flex justify-center items-center">
+          <span className="mr-3">&copy; {currentYear} Abdul Aliyev</span>
+          <Button asChild size="sm">
+            <a href="https://www.aaliyev.com/contact" target="_blank">
+              <Mail size="10" />
+              Get in touch
+            </a>
+          </Button>
         </div>
       </div>
     </footer>
