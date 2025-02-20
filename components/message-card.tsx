@@ -7,15 +7,27 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import markMessageAsRead from "@/app/actions/mark-message-as-read";
 import { Badge } from "./ui/badge";
+import deleteMessage from "@/app/actions/delete-message";
 
 const MessageCard = ({ message }: { message: IMessagePopulated }) => {
   const [isRead, setIsRead] = useState(message.read);
+  const [isDeleted, setIsDeleted] = useState(false);
+
+  async function handleDeleteClick() {
+    await deleteMessage(message._id);
+    setIsDeleted(true);
+    toast.success("Message deleted");
+  }
 
   async function handleReadClick() {
     const read = await markMessageAsRead(message._id);
 
     setIsRead(read);
     toast.success(`Marked as ${read ? "read" : "new"}`);
+  }
+
+  if (isDeleted) {
+    return <p>Deleted message</p>;
   }
 
   return (
@@ -53,7 +65,7 @@ const MessageCard = ({ message }: { message: IMessagePopulated }) => {
         <Button onClick={handleReadClick}>
           <Check /> {isRead ? "Mark as new" : "Mark as read"}
         </Button>
-        <Button variant="destructive">
+        <Button variant="destructive" onClick={handleDeleteClick}>
           <Trash /> Delete
         </Button>
       </div>
