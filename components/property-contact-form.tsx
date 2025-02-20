@@ -1,16 +1,13 @@
 "use client";
-import { useEffect } from "react";
-import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
-import { useSession } from "next-auth/react";
-import { toast } from "react-toastify";
 import addMessage from "@/app/actions/add-message";
 import { IProperty } from "@/types/property.types";
-import { Plane } from "lucide-react";
-import { Button } from "./ui/button";
-import { Textarea } from "./ui/textarea";
-import { Label } from "./ui/label";
+import { useSession } from "next-auth/react";
+import { useActionState, useEffect } from "react";
+import { toast } from "react-toastify";
+import SubmitMessageButton from "./submit-message-button";
 import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Textarea } from "./ui/textarea";
 
 const PropertyContactForm = ({ property }: { property: IProperty }) => {
   const { data: session } = useSession();
@@ -82,9 +79,7 @@ const PropertyContactForm = ({ property }: { property: IProperty }) => {
           ></Textarea>
         </div>
         <div>
-          <Button type="submit">
-            <Plane /> Send Message
-          </Button>
+          <SubmitMessageButton />
         </div>
       </form>
     )
