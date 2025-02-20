@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "next-themes";
 import { GlobalProvider } from "@/context/global-context";
 import "react-toastify/dist/ReactToastify.css";
+import "photoswipe/dist/photoswipe.css";
 
 export const metadata: Metadata = {
   title: "Property TEK Sphere",
