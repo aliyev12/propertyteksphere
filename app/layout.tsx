@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "next-themes";
+import { GlobalProvider } from "@/context/global-context";
 import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
@@ -18,16 +19,18 @@ export const metadata: Metadata = {
 const MainLayout = ({ children }: { children: ReactElement }) => {
   return (
     <AuthProvider>
-      <html suppressHydrationWarning>
-        <body>
-          <ThemeProvider>
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-            <ToastContainer />
-          </ThemeProvider>
-        </body>
-      </html>
+      <GlobalProvider>
+        <html suppressHydrationWarning>
+          <body>
+            <ThemeProvider>
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+              <ToastContainer />
+            </ThemeProvider>
+          </body>
+        </html>
+      </GlobalProvider>
     </AuthProvider>
   );
 };

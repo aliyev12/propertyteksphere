@@ -8,14 +8,18 @@ import { toast } from "react-toastify";
 import markMessageAsRead from "@/app/actions/mark-message-as-read";
 import { Badge } from "./ui/badge";
 import deleteMessage from "@/app/actions/delete-message";
+import { useGlobalContext } from "@/context/global-context";
 
 const MessageCard = ({ message }: { message: IMessagePopulated }) => {
   const [isRead, setIsRead] = useState(message.read);
   const [isDeleted, setIsDeleted] = useState(false);
 
+  const { setUnreadCount } = useGlobalContext();
+
   async function handleDeleteClick() {
     await deleteMessage(message._id);
     setIsDeleted(true);
+    setUnreadCount((prevCount: number) => (isRead ? prevCount : prevCount - 1));
     toast.success("Message deleted");
   }
 
@@ -23,6 +27,9 @@ const MessageCard = ({ message }: { message: IMessagePopulated }) => {
     const read = await markMessageAsRead(message._id);
 
     setIsRead(read);
+    setUnreadCount((prevCount: number) =>
+      read ? prevCount - 1 : prevCount + 1
+    );
     toast.success(`Marked as ${read ? "read" : "new"}`);
   }
 
