@@ -3,9 +3,22 @@ import Property from "@/models/Property";
 import PropertyCard from "@/components/property-card";
 import { IProperty } from "@/types/property.types";
 
-const PropertiesPage = async () => {
+const PropertiesPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    page: string;
+    pageSize: string;
+  }>;
+}) => {
+  const { page = "1", pageSize = "2" } = await searchParams;
   await connectDB();
-  const properties = (await Property.find({}).lean()) as unknown as IProperty[];
+  const skip = (Number(page) - 1) * Number(pageSize);
+  const total = await Property.countDocuments({});
+
+  const properties = (await Property.find({})
+    .skip(skip)
+    .limit(Number(pageSize))) as unknown as IProperty[];
 
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

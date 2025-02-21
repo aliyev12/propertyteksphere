@@ -28,14 +28,16 @@ const PropertyCard = ({ property }: { property: IProperty }) => {
   return (
     <div className="rounded-xl shadow-md border relative">
       {property.images[0] && (
-        <Image
-          src={property.images[0]}
-          alt=""
-          width={0}
-          height={0}
-          sizes="100vw"
-          className="w-full h-[250px] rounded-t-xl"
-        />
+        <Link href={`/properties/${property._id}`}>
+          <Image
+            src={property.images[0]}
+            alt=""
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-full h-[250px] rounded-t-xl"
+          />
+        </Link>
       )}
       <div className="p-4">
         <div className="text-left md:text-center lg:text-left mb-6">
