@@ -45,6 +45,7 @@ const PropertySearchForm = () => {
           placeholder="Enter Location (City, State, Zip, etc)"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
+          className="bg-secondary placeholder:text-foreground"
         />
       </div>
       <div className="w-full md:w-2/5 md:pl-2">
@@ -55,10 +56,13 @@ const PropertySearchForm = () => {
           value={propertyType}
           onValueChange={(val) => setPropertyType(val)}
         >
-          <SelectTrigger id="property-type">
+          <SelectTrigger
+            id="property-type"
+            className="bg-secondary placeholder:text-foreground text-foreground"
+          >
             <SelectValue placeholder="Select property type" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-secondary placeholder:text-foreground text-foreground">
             <SelectGroup>
               <SelectLabel>Property Type</SelectLabel>
               <SelectItem value="All">All</SelectItem>
@@ -75,7 +79,7 @@ const PropertySearchForm = () => {
         </Select>
       </div>
       <Button
-        variant="outline"
+        variant="secondary"
         type="submit"
         className="md:ml-4 mt-4 md:mt-0 w-full md:w-auto"
       >
