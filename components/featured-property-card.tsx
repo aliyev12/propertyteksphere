@@ -1,44 +1,22 @@
 import { IProperty } from "@/types/property.types";
+import { Bath, Bed, CircleDollarSign, MapPin, Ruler } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Bed,
-  Bath,
-  Ruler,
-  Receipt,
-  MapPin,
-  CircleDollarSign,
-} from "lucide-react";
-import { Button } from "./ui/button";
+import { getRateDisplay } from "./property-card";
 import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 
-export const getRateDisplay = (property: IProperty) => {
-  const { rates } = property;
-
-  if (rates.monthly) {
-    return `$${rates.monthly.toLocaleString()} month`;
-  } else if (rates.weekly) {
-    return `$${rates.weekly.toLocaleString()} week`;
-  } else if (rates.nightly) {
-    return `$${rates.nightly.toLocaleString()} night`;
-  }
-};
-
-const PropertyCard = ({ property }: { property: IProperty }) => {
+const FeaturedPropertyCard = ({ property }: { property: IProperty }) => {
   return (
-    <div className="rounded-xl shadow-md border relative">
-      {property.images[0] && (
-        <Link href={`/properties/${property._id}`}>
-          <Image
-            src={property.images[0]}
-            alt=""
-            width={0}
-            height={0}
-            sizes="100vw"
-            className="w-full h-[250px] rounded-t-xl"
-          />
-        </Link>
-      )}
+    <div className="rounded-xl shadow-md border relative flex flex-col md:flex-row">
+      <Image
+        src={property.images[0]}
+        alt="Property Image"
+        className="w-full h-auto rounded-t-xl md:rounded-tr-none md:rounded-l-xl md:w-2/5 object-cover"
+        width={0}
+        height={0}
+        sizes="100vw"
+      />
       <div className="p-4">
         <div className="text-left md:text-center lg:text-left mb-6">
           <Badge variant="outline" className="mb-3">
@@ -48,7 +26,7 @@ const PropertyCard = ({ property }: { property: IProperty }) => {
         </div>
         <Badge
           variant="secondary"
-          className="absolute top-[10px] right-[10px] text-2xl"
+          className="absolute top-[10px] left-[10px] text-2xl"
         >
           {getRateDisplay(property)}
         </Badge>
@@ -106,4 +84,48 @@ const PropertyCard = ({ property }: { property: IProperty }) => {
   );
 };
 
-export default PropertyCard;
+export default FeaturedPropertyCard;
+
+// <div className="p-6">
+// <h3 className="text-xl font-bold">{property.name}</h3>
+// <p className="mb-4">{property.type}</p>
+// <h3 className="absolute top-[10px] left-[10px] px-4 py-2 rounded-lg font-bold text-right md:text-center lg:text-right">
+//   {property.rates.weekly}
+// </h3>
+// <div className="flex justify-center gap-4 mb-4">
+//   <p>
+//     <Bed /> {property.beds}{" "}
+//     <span className="md:hidden lg:inline">Beds</span>
+//   </p>
+//   <p>
+//     <Bath /> {property.baths}{" "}
+//     <span className="md:hidden lg:inline">Baths</span>
+//   </p>
+//   <p>
+//     <Ruler /> {property.square_feet}{" "}
+//     <span className="md:hidden lg:inline">sqft</span>
+//   </p>
+// </div>
+// <div className="flex justify-center gap-4 test-sm mb-4">
+//   <p>
+//     <DollarSign /> Nightly
+//   </p>
+//   <p>
+//     <DollarSign /> Weekly
+//   </p>
+// </div>
+
+// <div className="border mb-5"></div>
+
+// <div className="flex flex-col lg:flex-row justify-between">
+//   <div className="flex align-middle gap-2 mb-4 lg:mb-0">
+//     <MapPin />
+//     <span>
+//       {property.location.city} {property.location.state}
+//     </span>
+//   </div>
+//   <Button asChild>
+//     <Link href={`/properties/${property._id}`}>Details</Link>
+//   </Button>
+// </div>
+// </div>
