@@ -2,6 +2,7 @@ import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import PropertyCard from "@/components/property-card";
 import { IProperty } from "@/types/property.types";
+import Pagination from "@/components/pagination";
 
 const PropertiesPage = async ({
   searchParams,
@@ -11,7 +12,7 @@ const PropertiesPage = async ({
     pageSize: string;
   }>;
 }) => {
-  const { page = "1", pageSize = "2" } = await searchParams;
+  const { page = "1", pageSize = "9" } = await searchParams;
   await connectDB();
   const skip = (Number(page) - 1) * Number(pageSize);
   const total = await Property.countDocuments({});
@@ -19,6 +20,8 @@ const PropertiesPage = async ({
   const properties = (await Property.find({})
     .skip(skip)
     .limit(Number(pageSize))) as unknown as IProperty[];
+
+  const showPagination = total > Number(pageSize);
 
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -31,6 +34,13 @@ const PropertiesPage = async ({
               <PropertyCard key={i} property={property} />
             ))}
           </div>
+        )}
+        {showPagination && (
+          <Pagination
+            page={Number(page)}
+            pageSize={Number(pageSize)}
+            totalItems={Number(total)}
+          />
         )}
       </div>
     </section>
